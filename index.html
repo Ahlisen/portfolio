@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A portfolio">
+    <meta name="author" content="Marcus">
+
+    <title>Portfolio</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <!-- UI Bootstrap carousel -->
+    <script src="js/ui-bootstrap-custom-tpls-2.5.0.js"></script>
+
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <!-- Full Width Header -->
+        <header>
+            <div class="headline">
+                <div class="container text-center">
+                    <h2 class="featurette-heading">Marcus Ahlström</h2>
+                    <nav class="lead">
+                        <a href="https://www.linkedin.com/in/marcus-ahlstr%C3%B6m-aba77958/">Linkedin</a>
+                        <a href="https://github.com/Ahlisen">Github</a>
+                        <a href="https://www.instagram.com/ahlisen/">Instagram</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <div class="container">
+                <div ng-repeat="proj in data track by $index" class="projects">
+                    <hr class="featurette-divider">
+                    <!-- Featurette -->
+                    <div class="featurette">
+                        <div uib-carousel interval="0" ng-class="pull($index)" class="img-responsive" active="active" >
+                          <div uib-slide ng-repeat="image in proj.image track by $index" index="$index">
+                            <img class="img-rounded featurette-image" ng-src="images/{{image}}">
+                          </div>
+                        </div>
+                        <div class="information">
+                            <!--img ng-class="pull($index)" class="featurette-image img-circle img-responsive" ng-src="images/{{proj.image[0]}}"-->
+                            <!-- http://placehold.it/500x500 -->
+                            <h2 class="featurette-heading">{{proj.title}}
+                                <span class="text-muted lead">{{proj.small}}</span>
+                            </h2>
+
+                            <nav class="lead">
+                                <a ng-hide="proj.website == ''" href="{{proj.website}}">Website</a>
+                                <a ng-hide="proj.github == ''" href="{{proj.github}}">Github</a>
+                                <a ng-hide="proj.video == ''" href="{{proj.video}}">Video</a>
+                            </nav>
+
+                            <p class="lead" ng-bind="proj.desc"></p>
+
+                            <ul class="list-inline lead"><!-- or -unstyled -->
+                                <li><b>Category: </b>{{proj.category}}</li>
+                                <li><b>Date: </b>{{proj.date}}</li>
+                                <li><b>Role: </b>{{proj.role}}</li>
+                                <li><b>Tools: </b>{{proj.tools}}</li>
+                                <li><b>Language(s): </b>{{proj.language}}</li>
+                                <li><b>Development: </b>{{proj.duration}}</li>
+                                <li ng-hide="proj.progress == '100%'"><b>Progress: </b>{{proj.progress}}</li>
+                                <li><b>Team: </b>{{proj.members}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            
+            <hr class="featurette-divider">
+            <!-- Contact Info -->
+    	    <div id="about"  height="500px">
+                <div>
+        	    	<img class="img-circle pull-right" src="images/face.jpg">
+                </div>
+                <div>
+        	    	<h2 class="featurette-heading">About
+        	    	<span class="text-muted"> / Contact</span>
+        	    	</h2>
+        	    	<p class="lead">These projects were made with GML, C#, C++, Swift, mySQL and Javascript. Other languages I've studied that didn't get their own project are: Java, Python, C and Matlab. Outside my studies I enjoy programming and designing local multiplayer games. My ears are quite tiny aswell. </p>
+        		    <p class="lead">
+                        <b>Email:</b> ahlisen93@gmail.com<br/>
+                    </p>
+                </div>
+    		</div>
+
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p></p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- /.container -->
+
+        <!--MyScripts-->
+        <script src="data.js"></script>
+        <script src="myApp.js"></script>
+
+    </div>
+</body>
+</html>
